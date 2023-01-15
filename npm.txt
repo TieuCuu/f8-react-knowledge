@@ -1,0 +1,26 @@
+1. Install/Uninstall library (From 1-2 is Project scope)
+
+	npm install react react-dom 
+	npm i react@17.2.0 react-dom@17.2.0
+	npm uninstall react react-dom
+
+2. Install library with dev-dependencies
+	npm install react react-dom --save-dev
+	npm i react readt-dom -D
+
+3. Install/Uninstall library with global scope
+	npm i --global create-react-app
+	npm i --g create-react-app
+	npm uninstall --g create-react-app
+
+4. Nên dùng npx, vì npx không cài hẳn lên máy/project, mà chỉ cài để thực thi câu lệnh xong xóa đi
+
+5. Khác nhau npm & yarn
+	- Performance, cache (yarn)
+
+	npm: cài tuần tự
+	=> Ưu: k cần tốn bộ nhớ cho phân vùng cache - Nhược: chậm hơn 1 tí so với yarn
+
+	yarn: cài song song
+		cache: có 1 phân vùng để lưu trữ library, nếu lần thứ 2 có cài library thì sẽ kt phân vùng này, nếu có thì lấy ra xài luôn
+	=> Ưu: nhanh - Nhược: tốn dung lượng bộ nhớ

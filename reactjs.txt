@@ -1,0 +1,119 @@
+1. Làm việc nhiều với input
+
+const Form = {
+            Input() {
+                return <input />
+            },
+            Checkbox() {
+                return <input type="checkbox" />
+            }
+        }
+
+        function App() {
+            const type = 'Input';
+            const Component = Form[type];
+
+            return (
+                <div>
+                    <Form.Input />
+                    <Form.Checkbox />
+                    <Component />
+                </div>
+            )
+        }
+
+2. bài toán có 1 button, nếu có href thì là thẻ a, nếu có onClick thì xử lý event, nếu có cả 2 thì xử lý cả 2
+
+        function Button({ title, href, onClick }) {
+            let Component = 'button';
+            const props = {};
+            if (href) {
+                Component = 'a';
+                props.href = href;
+            }
+            if (onClick) {
+                props.onClick = onClick;
+            }
+
+            return (
+                <Component {...props}>{title}</Component>
+            )
+        }
+
+        function App() {
+
+            return (
+                <div>
+                    <Button title="Click me" href="https://www.youtube.com/" onClick={() => { console.log(Math.random()); }} />
+                </div>
+            )
+        }
+
+3. Có 2 cách truyền props
+	+ C1: truyền dạng chuỗi (string literals) propName1="String literals"
+	+ C2: truyền dạng biểu thức (expression) propName2={expression}
+
+4. Áp dụng toán tử rest, spread cho input
+
+        function Input({ label, ...inputProps }) {
+            return (
+                <div>
+                    <label>{label}</label>
+                    <input {...inputProps} />
+                </div>
+            )
+        }
+
+        function App() {
+
+            return (
+                <div>
+                    <Input label="Full name" type="text" placeholder="Enter name..." />
+                </div>
+            )
+        }
+
+
+5. Props children
+
+<YourComponent>String literals</YourComponent>
+<YourComponent>{expression}</YourComponent>
+
+        function Button({ children }) {
+            return (
+                <button>{children}</button>
+            )
+        }
+
+        function App() {
+
+            return (
+                <div>
+                    <Button>Click me</Button>
+                </div>
+            )
+        }
+
+6. Render props
+
+        function List({ data, children }) {
+            return (
+                <ul>
+                    {data.map((item, index) => children(item, index))}
+		   hoặc {data.map((...props) => children(...props))}
+		   hoặc {data.map(children)}
+                </ul>
+            )
+        }
+
+        function App() {
+            const cars = ['BMW', 'Mazda', 'Toyota']
+
+            return (
+                <div>
+                    <List data={cars}>
+                        {(item, index) => <li key={index}>{item}</li>}
+                    </List>
+                </div>
+            )
+        }
